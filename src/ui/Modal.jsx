@@ -1,4 +1,20 @@
+import { Children } from "react";
+import { createPortal } from "react-dom";
 import styled from "styled-components";
+
+function Modal({ children, onCloseModal }) {
+  return createPortal(
+    <Overlay>
+      <StyledModal>
+        <Button onClick={onCloseModal}>❌</Button>
+        <div>{children}</div>
+      </StyledModal>
+    </Overlay>,
+    document.body
+  );
+}
+
+export default Modal;
 
 const StyledModal = styled.div`
   position: fixed;
